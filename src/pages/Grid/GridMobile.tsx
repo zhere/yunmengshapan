@@ -1,30 +1,29 @@
 import { useState } from 'react';
 import { message, Progress } from 'antd';
 import {
-  AlertCircle, ClipboardList, Search, QrCode, Home, ListChecks, User,
-  Bell, MapPin, Clock, ChevronRight, CheckCircle2, Phone, LogOut,
+  ClipboardList, Home, ListChecks, User,
+  Bell, MapPin, Clock, ChevronRight, CheckCircle2, Phone, LogOut, Building2, Users, DoorOpen,
 } from 'lucide-react';
-import { staff, events } from '@/mock/grid';
+import { staff } from '@/mock/grid';
 
 type Tab = 'home' | 'tasks' | 'me';
 
 const quickActions = [
-  { label: '事件上报', icon: AlertCircle, color: '#FF3B5C', action: () => message.success('已打开事件上报页面') },
-  { label: '任务接收', icon: ClipboardList, color: '#00D4FF', action: () => message.info('暂无新任务待接收') },
-  { label: '信息查询', icon: Search, color: '#00FF88', action: () => message.info('请输入查询关键词') },
-  { label: '扫码核验', icon: QrCode, color: '#FF9500', action: () => message.success('扫码功能已启动') },
+  { label: '实有人口', icon: Users, color: '#00D4FF', action: () => message.success('已打开实有人口采集页面') },
+  { label: '实有房屋', icon: Home, color: '#00FF88', action: () => message.success('已打开实有房屋采集页面') },
+  { label: '实有单位', icon: Building2, color: '#FF9500', action: () => message.success('已打开实有单位采集页面') },
+  { label: '标准地址', icon: DoorOpen, color: '#FF3B5C', action: () => message.success('已打开标准地址核验页面') },
 ];
 
 const myTasks = [
-  { id: 1, name: '曲阳路日常巡查', status: '进行中', time: '09:30', progress: 60 },
-  { id: 2, name: '人口信息核采', status: '待开始', time: '14:00', progress: 0 },
-  { id: 3, name: '占道经营处置', status: '已完成', time: '08:15', progress: 100 },
+  { id: 1, name: '建设路实有房屋信息采集', status: '进行中', time: '09:30', progress: 60 },
+  { id: 2, name: '曲阳路实有人口信息核采', status: '待开始', time: '14:00', progress: 0 },
+  { id: 3, name: '梦泽大道标准地址核查', status: '已完成', time: '08:15', progress: 100 },
 ];
 
 export default function GridMobile() {
   const [tab, setTab] = useState<Tab>('home');
   const worker = staff[0];
-  const recentEvents = events.slice(0, 3);
 
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-120px)] py-6">
@@ -113,19 +112,28 @@ export default function GridMobile() {
                   </div>
                 </div>
 
-                {/* Recent events */}
+                {/* 一标三实采集动态 */}
                 <div className="mt-4">
-                  <h4 className="text-sm font-semibold text-[#E8F0FE] mb-2">网格动态</h4>
+                  <h4 className="text-sm font-semibold text-[#E8F0FE] mb-2">一标三实采集动态</h4>
                   <div className="space-y-2">
-                    {recentEvents.map(e => (
-                      <div key={e.id} className="p-2.5 rounded-xl bg-[#112240] border border-[#1E3A5F]">
+                    {[
+                      { id: 1, name: '实有人口', count: 156, unit: '人', color: '#00D4FF' },
+                      { id: 2, name: '实有房屋', count: 89, unit: '户', color: '#00FF88' },
+                      { id: 3, name: '实有单位', count: 23, unit: '家', color: '#FF9500' },
+                      { id: 4, name: '标准地址', count: 312, unit: '条', color: '#FF3B5C' },
+                    ].map(item => (
+                      <div key={item.id} className="p-2.5 rounded-xl bg-[#112240] border border-[#1E3A5F]">
                         <div className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#FF9500]" />
-                          <span className="text-[11px] text-[#E8F0FE] truncate flex-1">{e.description}</span>
+                          <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: item.color }} />
+                          <span className="text-[11px] text-[#E8F0FE] flex-1">{item.name}</span>
+                          <span className="text-xs font-bold" style={{ color: item.color }}>{item.count}{item.unit}</span>
                         </div>
-                        <div className="flex items-center gap-2 mt-1 ml-3.5 text-[10px] text-[#8BA3C7]">
-                          <MapPin size={9} />{e.location}
-                        </div>
+                        <Progress
+                          percent={Math.min(100, Math.round((item.count / 400) * 100))}
+                          size="small"
+                          strokeColor={item.color}
+                          className="mt-1.5"
+                        />
                       </div>
                     ))}
                   </div>

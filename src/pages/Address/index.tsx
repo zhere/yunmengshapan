@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Table, Tag, Button } from 'antd';
-import { MapPin, CheckCircle, RefreshCw, XCircle, ArrowRight } from 'lucide-react';
+import { MapPin, CheckCircle, RefreshCw, XCircle, ArrowRight, Smartphone } from 'lucide-react';
 import ReactECharts from 'echarts-for-react';
 import StatCard from '@/components/Common/StatCard';
 import ChartCard from '@/components/Common/ChartCard';
@@ -44,11 +44,21 @@ export default function AddressOverview() {
 
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-5 gap-4">
         <StatCard title="标准地址总数" value={addressStats.total.toLocaleString()} icon={<MapPin size={22} />} color="#00D4FF" />
         <StatCard title="正常" value={addressStats.normalCount.toLocaleString()} icon={<CheckCircle size={22} />} color="#00FF88" />
         <StatCard title="变更" value={addressStats.changedCount.toLocaleString()} icon={<RefreshCw size={22} />} color="#FF9500" />
         <StatCard title="注销" value={addressStats.cancelledCount.toLocaleString()} icon={<XCircle size={22} />} color="#FF3B5C" />
+        <div
+          onClick={() => navigate('/address/submission')}
+          className="flex flex-col items-center justify-center rounded-lg border border-[#1E3A5F] bg-gradient-to-br from-[#A855F7]/10 to-[#00D4FF]/5 hover:from-[#A855F7]/20 hover:to-[#00D4FF]/10 cursor-pointer transition-all shadow-[0_0_12px_rgba(168,85,247,0.06)] hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] p-3"
+        >
+          <div className="w-10 h-10 rounded-full bg-[#A855F7]/15 flex items-center justify-center mb-1">
+            <Smartphone size={22} className="text-[#A855F7]" />
+          </div>
+          <span className="text-xs font-semibold text-[#E8F0FE]">小程序提交记录</span>
+          <span className="text-[10px] text-[#8BA3C7] mt-0.5">点击查看</span>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">

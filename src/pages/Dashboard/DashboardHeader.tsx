@@ -40,7 +40,7 @@ export default function DashboardHeader() {
           className="text-xl font-bold text-[#E8F0FE] tracking-[0.3em] whitespace-nowrap"
           style={{ textShadow: '0 0 20px rgba(0,212,255,0.6)' }}
         >
-          云梦县综合业务分析系统
+          云梦县综合管理平台
         </h1>
       </div>
 

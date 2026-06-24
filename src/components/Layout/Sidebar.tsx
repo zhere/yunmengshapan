@@ -6,7 +6,6 @@ import {
   Brain,
   AlertTriangle,
   Building2,
-  Siren,
   MapPin,
   ClipboardList,
   Grid3X3,
@@ -29,7 +28,7 @@ const navItems: NavItem[] = [
   { key: 'analysis', label: '行为分析', icon: <Brain size={20} />, path: '/analysis' },
   { key: 'warning', label: '预警中心', icon: <AlertTriangle size={20} />, path: '/warning' },
   { key: 'urban', label: '城管业务协同', icon: <Building2 size={20} />, path: '/urban' },
-  { key: 'emergency', label: '应急指挥调度', icon: <Siren size={20} />, path: '/emergency' },
+  // { key: 'emergency', label: '应急指挥调度', icon: <Siren size={20} />, path: '/emergency' },
   { key: 'address', label: '门牌管理', icon: <MapPin size={20} />, path: '/address' },
   { key: 'collection', label: '一标三实核采', icon: <ClipboardList size={20} />, path: '/collection' },
   { key: 'grid', label: '网格化管理', icon: <Grid3X3 size={20} />, path: '/grid' },
@@ -59,7 +58,7 @@ export default function Sidebar() {
         <Monitor size={24} className="text-[#00D4FF] shrink-0" />
         {!collapsed && (
           <span className="ml-3 text-sm font-bold text-[#E8F0FE] whitespace-nowrap truncate">
-            云梦县综合业务分析系统
+            云梦县综合管理平台
           </span>
         )}
       </div>

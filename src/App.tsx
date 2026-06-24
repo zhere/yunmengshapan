@@ -24,6 +24,7 @@ import AddressOverview from '@/pages/Address';
 import AddressStandard from '@/pages/Address/AddressStandard';
 import AddressPlate from '@/pages/Address/AddressPlate';
 import AddressQrcode from '@/pages/Address/AddressQrcode';
+import AddressSubmission from '@/pages/Address/AddressSubmission';
 import CollectionOverview from '@/pages/Collection';
 import CollectionTasks from '@/pages/Collection/CollectionTasks';
 import CollectionPopulation from '@/pages/Collection/CollectionPopulation';
@@ -73,6 +74,7 @@ export default function App() {
           <Route path="/address/standard" element={<AddressStandard />} />
           <Route path="/address/plate" element={<AddressPlate />} />
           <Route path="/address/qrcode" element={<AddressQrcode />} />
+          <Route path="/address/submission" element={<AddressSubmission />} />
           <Route path="/collection" element={<CollectionOverview />} />
           <Route path="/collection/tasks" element={<CollectionTasks />} />
           <Route path="/collection/population" element={<CollectionPopulation />} />
